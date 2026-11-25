@@ -24,7 +24,8 @@ use mod_lecturevideos\local\review_link;
  * A link to mod/lecturevideos/goto.php can name several destinations (cm/v/t, cm2/v2/t2, cm3/v3/t3), for example
  * the same moment in the AP lecture and in the Chem A/B topic video, so one question works in both courses.
  * goto.php sends each student to the first video they can open; this filter makes the link's text match:
- * the video title and start time of the destination(s) the viewer can open. Links with a single destination,
+ * the video title and start time of the destination the viewer can open (or "Related videos (choose one)" for a
+ * teacher who can open several). Links with a single destination,
  * and links none of whose videos the viewer can open, are left as they are.
  *
  * @package    filter_lecturelinks
@@ -84,8 +85,12 @@ class text_filter extends \core_filters\text_filter {
             foreach (review_link::resolve_all($targets) as $choice) {
                 $parts[] = self::describe($choice['video'] !== '' ? $choice['video'] : $choice['activity'], $choice['start']);
             }
-            if ($parts) {
-                $label = implode(' · ', array_unique($parts));
+            $parts = array_unique($parts);
+            if (count($parts) === 1) {
+                $label = reset($parts);
+            } else if ($parts) {
+                // Several videos (a teacher who sees both courses): goto.php shows a chooser.
+                $label = get_string('choosevideo', 'filter_lecturelinks');
             }
         }
         return self::$cache[$key] = $label;

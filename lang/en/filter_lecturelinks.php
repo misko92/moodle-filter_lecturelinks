@@ -24,6 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['choosevideo'] = 'Related videos (choose one)';
 $string['filtername'] = 'Lecture video links';
 $string['privacy:metadata'] = 'The Lecture video links filter does not store any personal data. It only changes the text of video links as they are shown.';
 $string['videoat'] = '{$a->title} at {$a->time}';

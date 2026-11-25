@@ -24,6 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['choosevideo'] = 'Videos relacionados (elige uno)';
 $string['filtername'] = 'Enlaces a videos de clase';
 $string['privacy:metadata'] = 'El filtro Enlaces a videos de clase no almacena datos personales. Solo cambia el texto de los enlaces a videos cuando se muestran.';
 $string['videoat'] = '{$a->title}, minuto {$a->time}';

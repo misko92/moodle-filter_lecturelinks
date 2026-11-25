@@ -74,8 +74,7 @@ final class text_filter_test extends \advanced_testcase {
         $this->assertStringContainsString('>28.01 Pressure at 5:03</a>', $this->filter(self::LINK));
 
         $this->setAdminUser();
-        $both = '>28.01 Pressure at 5:03 · 9.01 Converting Pressure Units at 1:33</a>';
-        $this->assertStringContainsString($both, $this->filter(self::LINK));
+        $this->assertStringContainsString('>Related videos (choose one)</a>', $this->filter(self::LINK));
     }
 
     public function test_spanish_label_and_links_left_alone(): void {
